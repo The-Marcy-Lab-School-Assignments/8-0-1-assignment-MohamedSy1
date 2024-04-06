@@ -1,12 +1,10 @@
-const express = require('express')
-const app = express()
+const express = require("express");
+const path = require("path");
+const app = express();
 
-//controllers
-const serveStatic = (req, res, next) => {
-    res.sendFile(__dirname + '/index.html')
-}
+const pathToDistFolder = path.join(__dirname, "..", "front-end", "dist");
 
-app.get('/', serveStatic)
+app.use(express.static(pathToDistFolder));
 
-const port = 8080
+const port = 8080;
 app.listen(port, () => console.log(`listening at http://localhost:${port}`));
